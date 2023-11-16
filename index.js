@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
 
 // * Code for Route 2 goes here
 
-app.get('/custom-object-form', (req, res) => {
+app.get('/update-cobj', (req, res) => {
     res.render('custom-object-form', { title: 'Custom Object Form | HubSpot Integration' });
   });
   
@@ -48,7 +48,7 @@ app.get('/custom-object-form', (req, res) => {
 
 // * Code for Route 3 goes here
 
-app.post('/custom-object-form', async (req, res) => {
+app.post('/update-cobj', async (req, res) => {
     try {
       // Extract data from the form submission (assuming form fields are named 'name', 'bio', etc.)
       const formData = {
