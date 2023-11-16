@@ -1,8 +1,15 @@
 extends layout
 
 block content
-  // Page title
   h1= title
+  
+    // Your update form content goes here
+    form(action='/submit-update', method='post')
+      label(for='updateField') Update Field:
+      input(type='text', id='updateField', name='updateField', required)
+      
+      // Add more form fields as needed
+      
+      button(type='submit') Submit Update
 
-  // Link to return to the homepage
-  a(href='/') Return to the homepage
+  a(href="/") Return to the homepage
