@@ -4,12 +4,17 @@ block content
   h1= title
   
     // Your update form content goes here
-    form(action='/submit-update', method='post')
-      label(for='updateField') Update Field:
-      input(type='text', id='updateField', name='updateField', required)
-      
-      // Add more form fields as needed
-      
-      button(type='submit') Submit Update
+   form(action='/update-cobj', method='post')
+      label(for='name') Name:
+      input(type='text', id='name', name='name', required)
+      br
+      label(for='race') Race:
+      input(type='text', id='race', name='race', required)
+      br
+      label(for='color') Color:
+      input(type='text', id='color', name='color', required)
+      // Add other form fields for additional custom object properties
+      br
+      input(type='submit', value='Submit')
 
   a(href="/") Return to the homepage

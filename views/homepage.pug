@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title= title
+  body
+    h1 CRM Records
+    table
+      thead
+        tr
+          th Name
+          th Race
+          th Color
+          // Add other th elements for additional custom object properties
+
+      tbody
+        each record in data
+          tr
+            td= record.properties.name 
+            td= record.properties.race 
+            td= record.properties.color 
+            // Add other td elements for additional custom object properties
