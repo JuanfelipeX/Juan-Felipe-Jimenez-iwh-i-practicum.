@@ -14,13 +14,68 @@ const PRIVATE_APP_ACCESS = '';
 
 // * Code for Route 1 goes here
 
+app.get('/', async (req, res) => {
+    try {
+      // Use the HubSpot API to fetch data from your custom object
+      const customObjectData = 'https://api.hubspot.com/crm/v3/objects/contacts';
+      const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+      };
+  
+      const resp = await axios.get(customObjectData, { headers });
+      const data = resp.data.results;
+  
+      // Render the data in a pug template (create a new pug template in the views folder)
+      res.render('homepage', { title: 'Homepage | HubSpot Integration', data });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+  
+
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
 // * Code for Route 2 goes here
 
+app.get('/custom-object-form', (req, res) => {
+    res.render('custom-object-form', { title: 'Custom Object Form | HubSpot Integration' });
+  });
+  
+
 // TODO: ROUTE 3 - Create a new app.post route for the custom objects form to create or update your custom object data. Once executed, redirect the user to the homepage.
 
 // * Code for Route 3 goes here
+
+app.post('/custom-object-form', async (req, res) => {
+    try {
+      // Extract data from the form submission (assuming form fields are named 'name', 'bio', etc.)
+      const formData = {
+        name: req.body.name,
+        race: req.body.race,
+        color: req.body.color,
+        // Add other form fields as needed
+      };
+  
+      // Use the HubSpot API to create or update custom object data
+      const createOrUpdateEndpoint = 'https://api.hubspot.com/crm/v3/objects/contacts';
+      const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+      };
+  
+      // Make a POST request to create or update the custom object data
+      await axios.post(createOrUpdateEndpoint, formData, { headers });
+  
+      // Redirect the user to the homepage after form submission
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+  
 
 /** 
 * * This is sample code to give you a reference for how you should structure your calls. 
