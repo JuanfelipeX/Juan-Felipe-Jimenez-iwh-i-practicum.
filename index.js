@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // * Please DO NOT INCLUDE the private app access token in your repo. Don't do this practicum in your normal account.
-const PRIVATE_APP_ACCESS = 'pat-na1-967e9932-0bf6-4363-823f-03005ea2a5ed';
+const PRIVATE_APP_ACCESS = '';
 
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
@@ -51,7 +51,7 @@ app.post('/update-cobj', async (req, res) => {
     try {
       // Extract data from the form submission (assuming form fields are named 'name', 'bio', etc.)
       const formData = {
-        name: req.body.name,
+        name: req.body.firstname,
         race: req.body.race,
         color: req.body.color,
         // Add other form fields as needed
